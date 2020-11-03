@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 const Field = styled.div`
@@ -42,11 +42,26 @@ const Button = styled.button`
 `;
 
 const Form = () => {
+  const [data, setData] = useState({
+    brand: '',
+    year: '',
+    plan: ''
+  });
+
+  const  { brand, year, plan } = data;
+
+  const getData = e => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    });
+  }
+
   return (
     <form>
       <Field>
         <Label>Marca</Label>
-        <Select>
+        <Select name="brand" value={brand} onChange={getData}>
           <option value="">-- Seleccione --</option>
           <option value="american">Americano</option>
           <option value="european">Europeo</option>
@@ -55,7 +70,7 @@ const Form = () => {
       </Field>
       <Field>
         <Label>Año</Label>
-        <Select>
+        <Select name="year" value={year} onChange={getData}>
           <option value="">-- Seleccione --</option>
           <option value="2021">2021</option>
           <option value="2020">2020</option>
@@ -71,8 +86,8 @@ const Form = () => {
       </Field>
       <Field>
         <Label>Plan</Label>
-        <InputRadio type="radio" name="plan" value="basic" /> Básico
-        <InputRadio type="radio" name="plan" value="full" /> Completo
+        <InputRadio type="radio" name="plan" value="basic" checked={plan === 'basic'} onChange={getData} /> Básico
+        <InputRadio type="radio" name="plan" value="full" checked={plan === 'full'} onChange={getData} /> Completo
       </Field>
       <Button>Cotizar</Button>
     </form>
