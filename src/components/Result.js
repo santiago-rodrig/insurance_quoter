@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const Message = styled.p`
@@ -29,14 +30,14 @@ const QuoteText = styled.p`
 const Result = ({ quote }) => {
   let toRender;
 
-  if (!quote) {
+  if (quote <= 0) {
     toRender = <Message>Elige año, marca, y tipo de seguro.</Message>;
   } else {
     toRender = (
       <QuoteResult>
         <TransitionGroup component="div" className="resultado">
           <CSSTransition classNames="resultado" key={quote} timeout={{ enter: 500, exit: 500 }}>
-            <QuoteText>El total es: ${quote}</QuoteText>
+            <QuoteText>El total es: ${quote.toFixed(2)}</QuoteText>
           </CSSTransition>
         </TransitionGroup>
       </QuoteResult>
@@ -45,5 +46,9 @@ const Result = ({ quote }) => {
 
   return toRender;
 }
+
+Result.propTypes = {
+  quote: PropTypes.number.isRequired
+};
 
 export default Result;

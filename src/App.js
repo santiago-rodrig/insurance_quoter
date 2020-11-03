@@ -17,17 +17,32 @@ const FormContainer = styled.div`
 `;
 
 function App() {
-  const [summary, setSummary] = useState({});
+  const [summary, setSummary] = useState({
+    quote: 0,
+    data: {
+      brand: '',
+      year: '',
+      plan: ''
+    }
+  });
+
   const [loading, setLoading] = useState(false);
+  const { quote, data } = summary;
+
+  const dataIsPresent = data.brand.trim() !== '' &&
+    data.year.trim() !== '' &&
+    data.plan.trim() !== '';
+
+  const quoteIsValid = quote > 0;
 
   return (
     <Container>
       <Header title="Cotizador de Seguros" />
       <FormContainer>
         <Form setSummary={setSummary} setLoading={setLoading} />
-        { (!loading && summary.data) ? <Summary data={summary.data} /> : null }
+        { (!loading && dataIsPresent) ? <Summary data={summary.data} /> : null }
         { loading ? <Spinner /> : null }
-        { !loading ? <Result quote={summary.quote} /> : null }
+        { (!loading && quoteIsValid) ? <Result quote={quote} /> : null }
       </FormContainer>
     </Container>
   );
