@@ -21,3 +21,13 @@ export function calculateBrand(brand, basePrice) {
 
   return increment;
 }
+
+export function calculatePlan(plan, basePrice) {
+  if (plan === 'basic') {
+    return basePrice * 0.2;
+  } else if (plan === 'full') {
+    return basePrice * 0.5;
+  }
+
+  return undefined;
+}
