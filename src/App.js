@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState} from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
+import Summary from './components/Summary';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
@@ -14,11 +15,14 @@ const FormContainer = styled.div`
 `;
 
 function App() {
+  const [summary, setSummary] = useState({});
+
   return (
     <Container>
       <Header title="Cotizador de Seguros" />
       <FormContainer>
-        <Form />
+        <Form setSummary={setSummary} />
+        { summary.data ? <Summary data={summary.data} /> : null }
       </FormContainer>
     </Container>
   );
