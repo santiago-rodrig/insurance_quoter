@@ -41,12 +41,23 @@ const Button = styled.button`
   }
 `;
 
+const Error = styled.div`
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+`;
+
 const Form = () => {
   const [data, setData] = useState({
     brand: '',
     year: '',
     plan: ''
   });
+
+  const [error, setError] = useState(false);
 
   const  { brand, year, plan } = data;
 
@@ -57,8 +68,21 @@ const Form = () => {
     });
   }
 
+  const quoteInsurance = e => {
+    e.preventDefault();
+
+    if (brand.trim() === '' || year.trim() === '' || plan.trim() === '') {
+      setError(true);
+
+      return;
+    }
+
+    setError(false);
+  }
+
   return (
-    <form>
+    <form onSubmit={quoteInsurance}>
+      { error ? <Error>Todos los campos son obligatorios</Error> : null }
       <Field>
         <Label>Marca</Label>
         <Select name="brand" value={brand} onChange={getData}>
