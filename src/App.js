@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
 import Summary from './components/Summary';
+import Result from './components/Result';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
@@ -23,6 +24,7 @@ function App() {
       <FormContainer>
         <Form setSummary={setSummary} />
         { summary.data ? <Summary data={summary.data} /> : null }
+        <Result quote={summary.quote} />
       </FormContainer>
     </Container>
   );
