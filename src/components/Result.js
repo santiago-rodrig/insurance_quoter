@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const Message = styled.p`
   background-color: rgb(127, 224, 237);
@@ -12,7 +13,7 @@ const QuoteResult = styled.div`
   text-align: center;
   padding: 0.5rem;
   border: 1px solid #26c6da;
-  background-color: rgb(217, 224, 237);
+  background-color: rgb(127, 224, 237);
   margin-top: 1rem;
   position: relative;
 `;
@@ -33,7 +34,11 @@ const Result = ({ quote }) => {
   } else {
     toRender = (
       <QuoteResult>
-        <QuoteText>El total es: ${quote}</QuoteText>
+        <TransitionGroup component="div" className="resultado">
+          <CSSTransition classNames="resultado" key={quote} timeout={{ enter: 500, exit: 500 }}>
+            <QuoteText>El total es: ${quote}</QuoteText>
+          </CSSTransition>
+        </TransitionGroup>
       </QuoteResult>
     );
   }
