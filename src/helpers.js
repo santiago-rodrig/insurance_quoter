@@ -1,5 +1,5 @@
 export function getYearDifference(year) {
-  return (new Date).getFullYear() - year;
+  return (new Date()).getFullYear() - year;
 }
 
 export function calculateBrand(brand, basePrice) {
