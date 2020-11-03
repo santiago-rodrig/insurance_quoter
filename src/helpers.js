@@ -31,3 +31,42 @@ export function calculatePlan(plan, basePrice) {
 
   return undefined;
 }
+
+export function getBrandName(brand) {
+  let brandName;
+
+  switch (brand) {
+    case 'american':
+      brandName = 'Americano';
+      break;
+    case 'european':
+      brandName = 'Europeo';
+      break;
+    case 'asian':
+      brandName = 'Asiático';
+      break;
+    default:
+      brandName = undefined;
+      break;
+  }
+
+  return brandName;
+}
+
+export function getPlanName(plan) {
+  let planName;
+
+  switch (plan) {
+    case 'basic':
+      planName = 'Básico';
+      break;
+    case 'full':
+      planName = 'Completo';
+      break;
+    default:
+      planName = undefined;
+      break;
+  }
+
+  return planName;
+}

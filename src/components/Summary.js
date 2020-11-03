@@ -1,4 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import styled from '@emotion/styled';
+import { getBrandName, getPlanName } from '../helpers';
+
+const SummaryContainer = styled.div`
+  padding: 1rem;
+  text-align: center;
+  background-color: #00838f;
+  color: #fff;
+  margin-top: 1rem;
+`;
 
 const Summary = ({ data }) => {
   const { brand, year, plan } = data;
@@ -7,44 +17,15 @@ const Summary = ({ data }) => {
     return null;
   }
 
-  let brandName;
-
-  switch (brand) {
-    case 'american':
-      brandName = 'Americano';
-      break;
-    case 'european':
-      brandName = 'Europeo';
-      break;
-    case 'asian':
-      brandName = 'Asiático';
-      break;
-    default:
-      break;
-  }
-
-  let planName;
-
-  switch (plan) {
-    case 'basic':
-      planName = 'Básico';
-      break;
-    case 'full':
-      planName = 'Completo';
-      break;
-    default:
-      break;
-  }
-
   return (
-    <>
+    <SummaryContainer>
       <h2>Resumen de Cotización</h2>
       <ul>
-        <li>Marca: {brandName}</li>
-        <li>Plan: {planName}</li>
+        <li>Marca: {getBrandName(brand)}</li>
+        <li>Plan: {getPlanName(plan)}</li>
         <li>Año del automóvil: {year}</li>
       </ul>
-    </>
+    </SummaryContainer>
   );
 }
 
