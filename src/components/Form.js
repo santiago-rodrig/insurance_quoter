@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { getYearDifference } from '../helpers';
 
 const Field = styled.div`
   display: flex;
@@ -78,6 +79,11 @@ const Form = () => {
     }
 
     setError(false);
+
+    const difference = getYearDifference(year);
+    let result = 2000;
+
+    result -= (result * 0.03) * difference;
   }
 
   return (
